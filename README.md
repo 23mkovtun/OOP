@@ -143,6 +143,41 @@ cool_reviewer_2.rate_hw(student_3, 'Python', 3)
 cool_reviewer_2.rate_hw(student_3, 'Python', 8)
 
 
+class Learner(Student):
+  def __init__(self, name, surname):
+    super().__init__(name, surname)
+    
+class Learner_2(Student):
+  def __init__(self, name, surname):
+    super().__init__(name, surname)
+
+    
+
+student_list = [student_1, student_2, student_3]
+
+lecturer_list = [best_lecturer_1, best_lecturer_2, best_lecturer_3]
+
+def Learner_rating(student_list, course_name):
+  sum_all = 0
+  count_all = 0
+  for stud in student_list: 
+    if [course_name] == stud.courses_in_progress:
+      sum_all += stud.average_rating
+      count_all += 1
+  average_for_all = sum_all / count_all
+  return average_for_all
+
+def lecturer_rating(lecturer_list, course_name):
+    sum_all = 0
+    count_all = 0
+    for lect in lecturer_list:
+        if lect.courses_attached == [course_name]:
+            sum_all += lect.average_rating
+            count_all += 1
+    average_for_all = sum_all / count_all
+    return average_for_all
+
+
 print(f'Перечень проверяющих:\n\n{cool_reviewer_1}\n\n{cool_reviewer_2}\n')
 print(f'Перечень студентов:\n\n{student_1}\n\n{student_2}\n\n{student_3}\n')
 print(f'Перечень лекторов:\n\n{best_lecturer_1}\n\n{best_lecturer_2}\n\n{best_lecturer_3}\n\n')
@@ -153,3 +188,7 @@ print()
 print(f'Результат сравнения лекторов (по средним оценкам за лекции): '
       f'{best_lecturer_1.name} {best_lecturer_1.surname} < {best_lecturer_2.name} {best_lecturer_2.surname} = {best_lecturer_1 < best_lecturer_2}')
 print()
+
+print(f"Средняя оценка для всех студентов по курсу {'Python'}: {Learner_rating(student_list, 'Python')}")
+
+print(f"Средняя оценка для всех лекторов по курсу {'Python'}: {lecturer_rating(lecturer_list, 'Python')}")
